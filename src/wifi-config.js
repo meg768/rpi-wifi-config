@@ -4,12 +4,11 @@ var sprintf       = require('yow/sprintf');
 var isString      = require('yow/is').isString;
 var Events        = require('events');
 var ChildProcess  = require('child_process');
-var Watch         = require('watch');
 var Path          = require('path');
 
 
 var FileMonitor = require('./file-monitor.js')
-var WiFiConnection = require('./wifi-connection.js');
+var WifiConnection = require('./wifi-connection.js');
 
 
 
@@ -99,7 +98,7 @@ module.exports = class WifiConfig extends Events {
 
         }
 
-        var wifi = new WiFiConnection();
+        var wifi = new WifiConnection();
 
         Promise.resolve().then(() => {
             return Promise.resolve(loadFile());
