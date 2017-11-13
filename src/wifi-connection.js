@@ -175,6 +175,8 @@ module.exports = class WiFiConnection {
             if (timestamp == undefined)
                 timestamp = new Date();
 
+            debug('Waiting for network connection...');
+
             return new Promise((resolve, reject) => {
 
                 self.getConnectionState().then((connected) => {
