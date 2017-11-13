@@ -48,10 +48,10 @@ Connects to the specified network.
 
 ````javascript
 
-var WifiConnection = require('./src/wifi-connection.js');
-var wifi = new WifiConnection();
+var Wifi = require('rpi-wifi-config');
+var wifi = new Wifi();
 
-wifi.connectToNetwork({ssid:'Julia', psk:'raspberry'}).then(() => {
+wifi.connect({ssid:'my-network', psk:'raspberry'}).then(() => {
     console.log('Connected to network.');
 })
 .catch((error) => {
@@ -65,8 +65,8 @@ wifi.connectToNetwork({ssid:'Julia', psk:'raspberry'}).then(() => {
 
 ````javascript
 
-var WifiConnection = require('./src/wifi-connection.js');
-var wifi = new WifiConnection();
+var Wifi = require('rpi-wifi-config');
+var wifi = new Wifi();
 
 wifi.getStatus().then((status) => {
     console.log(status);
@@ -80,8 +80,8 @@ wifi.getStatus().then((status) => {
 
 ````javascript
 
-var WifiConnection = require('./src/wifi-connection.js');
-var wifi = new WifiConnection();
+var Wifi = require('rpi-wifi-config');
+var wifi = new Wifi();
 
 wifi.getState().then((connected) => {
     if (connected)        
