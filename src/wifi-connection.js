@@ -198,8 +198,7 @@ module.exports = class WiFiConnection {
                             })
                         }
                         else {
-                            reconfigure();
-                            throw new Error('Unable to connect to network.');                            
+                            throw new Error('Unable to connect to network.');
                         }
                     }
                 })
@@ -267,6 +266,9 @@ module.exports = class WiFiConnection {
                 resolve();
             })
             .catch((error) => {
+                // Undo all changes
+                reconfigure();
+
                 reject(error);
             })
         });
