@@ -48,8 +48,8 @@ wifi.getNetworks().then((networks) => {
 var WifiConnection = require('./src/wifi-connection.js');
 var wifi = new WifiConnection();
 
-wifi.getNetworks().then((networks) => {
-    console.log(networks);
+wifi.getNetworkStatus().then((status) => {
+    console.log(status);
 });
 
 // { ssid: 'Julia', ip_address: '10.0.1.83' }
