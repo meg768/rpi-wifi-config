@@ -149,7 +149,7 @@ module.exports = class WiFiConnection {
         }
 
 
-        function setNetworkVariable(id, name, value) {
+        function setNetwork(id, name, value) {
             debug(sprintf('Setting variable %s=%s for network %d.', name, value, id));
             return self.wpa_cli(sprintf('set_network %d %s \'"%s"\'', id, name, value), '^OK');
         }
@@ -167,7 +167,7 @@ module.exports = class WiFiConnection {
 
         function removeNetwork(id) {
             debug(sprintf('Removing network #%d...', id));
-            this.wpa_cli(sprintf('remove_network %d', id), '^OK');
+            self.wpa_cli(sprintf('remove_network %d', id), '^OK');
         }
 
         function waitForNetworkConnection(timeout, timestamp) {
@@ -239,10 +239,10 @@ module.exports = class WiFiConnection {
             })
             .then((id) => {
                 networkID = id;
-                return setNetworkVariable(networkID, 'ssid', ssid);
+                return setNetwork(networkID, 'ssid', ssid);
             })
             .then(() => {
-                return (isString(password) ? setNetworkVariable(networkID, 'psk', password) : Promise.resolve());
+                return (isString(password) ? setNetwork(networkID, 'psk', password) : Promise.resolve());
             })
             .then(() => {
                 return selectNetwork(networkID);
