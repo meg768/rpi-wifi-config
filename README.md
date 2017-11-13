@@ -61,14 +61,14 @@ wifi.connectToNetwork({ssid:'Julia', psk:'raspberry'}).then(() => {
 ````
 
 
-### getNetworkStatus()
+### getStatus()
 
 ````javascript
 
 var WifiConnection = require('./src/wifi-connection.js');
 var wifi = new WifiConnection();
 
-wifi.getNetworkStatus().then((status) => {
+wifi.getStatus().then((status) => {
     console.log(status);
 });
 
@@ -76,14 +76,14 @@ wifi.getNetworkStatus().then((status) => {
 
 ````
 
-### getConnectionState()
+### getState()
 
 ````javascript
 
 var WifiConnection = require('./src/wifi-connection.js');
 var wifi = new WifiConnection();
 
-wifi.getConnectionState().then((connected) => {
+wifi.getState().then((connected) => {
     if (connected)        
         console.log('Connected to network.');
     else

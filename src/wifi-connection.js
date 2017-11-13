@@ -50,10 +50,10 @@ module.exports = class WiFiConnection {
         });
     }
 
-    getConnectionState() {
+    getState() {
         return new Promise((resolve, reject) => {
 
-            this.getNetworkStatus().then((status) => {
+            this.getStatus().then((status) => {
                 resolve(isString(status.ip_address));
             })
 
@@ -63,7 +63,7 @@ module.exports = class WiFiConnection {
         });
     }
 
-    getNetworkStatus() {
+    getStatus() {
         return new Promise((resolve, reject) => {
 
             this.wpa_cli('status').then((output) => {
@@ -119,7 +119,7 @@ module.exports = class WiFiConnection {
     }
 
 
-    connectToNetwork(options) {
+    connect(options) {
 
         options = Object.assign({timeout:30000}, options);
 
@@ -184,7 +184,7 @@ module.exports = class WiFiConnection {
 
             return new Promise((resolve, reject) => {
 
-                self.getConnectionState().then((connected) => {
+                self.getState().then((connected) => {
 
                     if (connected) {
                         return Promise.resolve();
