@@ -61,7 +61,6 @@ module.exports = class WiFiConnection {
                 reject(error);
             })
         });
-
     }
 
     getNetworkStatus() {
@@ -133,7 +132,16 @@ module.exports = class WiFiConnection {
 
         function addNetwork() {
             debug('Adding network...');
-            return self.wpa_cli('add_network', '^([0-9]+)');
+
+            return new Promise((resolve, reject) => {
+                self.wpa_cli('add_network', '^([0-9]+)').then((id) => {
+                    resolve(parseInt(id));
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+
+            });
         }
 
 
@@ -226,11 +234,7 @@ module.exports = class WiFiConnection {
                 return addNetwork();
             })
             .then((id) => {
-                debug('Network created:', id);
-                networkID = parseInt(id);
-                return Promise.resolve();
-            })
-            .then(() => {
+                networkID = id;
                 return setNetworkVariable(networkID, 'ssid', ssid);
             })
             .then(() => {
@@ -239,11 +243,9 @@ module.exports = class WiFiConnection {
             .then(() => {
                 return selectNetwork(networkID);
             })
-
             .then(() => {
                 return waitForNetworkConnection(timeout);
             })
-
             .then(() => {
                 return saveConfiguration();
             })
