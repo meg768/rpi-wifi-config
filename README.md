@@ -40,6 +40,25 @@ wifi.getNetworks().then((networks) => {
 
 ````
 
+### connectToNetwork(options)
+
+Connects to the specified network.
+
+- **options** - Object containing the network name (**ssid**) and password (**psk**).
+
+````javascript
+
+var WifiConnection = require('./src/wifi-connection.js');
+var wifi = new WifiConnection();
+
+wifi.connectToNetwork({ssid:'Julia', psk:'potatismos'}).then(() => {
+    console.log('Connected to network.');
+});
+
+// { ssid: 'Julia', ip_address: '10.0.1.189' }
+
+````
+
 
 ### getNetworkStatus()
 
@@ -52,6 +71,6 @@ wifi.getNetworkStatus().then((status) => {
     console.log(status);
 });
 
-// { ssid: 'Julia', ip_address: '10.0.1.83' }
+// { ssid: 'Julia', ip_address: '10.0.1.189' }
 
 ````

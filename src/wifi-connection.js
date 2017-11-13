@@ -119,10 +119,14 @@ module.exports = class WiFiConnection {
     }
 
 
-    connectToNetwork(ssid, password, timeout = 20000) {
+    connectToNetwork(options) {
 
-        var self = this;
+        options = Object.assign({timeout:30000}, options);
 
+        var self     = this;
+        var ssid     = options.ssid;
+        var password = options.psk;
+        var timeout  = options.timeout;
 
         function delay(ms) {
             return new Promise((resolve, reject) => {
