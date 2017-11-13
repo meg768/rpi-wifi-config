@@ -8,9 +8,7 @@ Configure Raspberry Pi Wi-Fi over Bluetooth
 ## Usage
 
 	var WifiConfig = require('rpi-wifi-config');
-	var var wifiConfig  = new WifiConfig();
-
-	matrix.runText('Hello World');
+	var wifi  = new WifiConfig();
 
 
 
@@ -44,7 +42,9 @@ wifi.getNetworks().then((networks) => {
 
 Connects to the specified network.
 
-- **options** - Object containing the network name (**ssid**) and password (**psk**).
+- **options.ssid**     - Specifies the network name.
+- **options.psk**      - Specifies the password.
+- **options.timeout**  - Specifies the number of milliseconds to wait for connection.
 
 ````javascript
 
