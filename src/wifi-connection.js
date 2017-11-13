@@ -19,7 +19,6 @@ module.exports = class WiFiConnection {
         this.iface = iface;
     }
 
-
     wpa_cli(command, pattern) {
 
         return new Promise((resolve, reject) => {
@@ -51,8 +50,6 @@ module.exports = class WiFiConnection {
         });
     }
 
-
-
     getConnectionState() {
         return new Promise((resolve, reject) => {
 
@@ -66,11 +63,6 @@ module.exports = class WiFiConnection {
         });
 
     }
-
-
-
-
-
 
     getNetworkStatus() {
         return new Promise((resolve, reject) => {
