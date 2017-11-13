@@ -36,4 +36,22 @@ wifi.getNetworks().then((networks) => {
     console.log(networks);
 });
 
+//  [ { id: 0, ssid: 'Julia' } ]
+
+````
+
+
+### getNetworkStatus()
+
+````javascript
+
+var WifiConnection = require('./src/wifi-connection.js');
+var wifi = new WifiConnection();
+
+wifi.getNetworks().then((networks) => {
+    console.log(networks);
+});
+
+// { ssid: 'Julia', ip_address: '10.0.1.83' }
+
 ````
