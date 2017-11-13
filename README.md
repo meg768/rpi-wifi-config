@@ -76,7 +76,7 @@ wifi.getNetworkStatus().then((status) => {
 
 ````
 
-### getNetworkStatus()
+### getConnectionState()
 
 ````javascript
 

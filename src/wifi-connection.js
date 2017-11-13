@@ -160,6 +160,11 @@ module.exports = class WiFiConnection {
             return self.wpa_cli(sprintf('select_network %s', id), '^OK');
         }
 
+        function reconfigure() {
+            debug(sprintf('Reconfiguring...'));
+            return self.wpa_cli(sprintf('reconfigure'), '^OK');
+        }
+
         function saveConfiguration() {
             debug(sprintf('Saving configuration...'));
             return self.wpa_cli(sprintf('save_config'), '^OK');
@@ -192,8 +197,10 @@ module.exports = class WiFiConnection {
                                 return waitForNetworkConnection(timeout, timestamp);
                             })
                         }
-                        else
-                            throw new Error('Unable to connect to network.');
+                        else {
+                            reconfigure();
+                            throw new Error('Unable to connect to network.');                            
+                        }
                     }
                 })
 

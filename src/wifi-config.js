@@ -46,6 +46,7 @@ module.exports = class WifiConfig extends Events {
 
 
 
+
     setup() {
         var self = this;
         var fileName = this.fileName;
@@ -108,7 +109,7 @@ module.exports = class WifiConfig extends Events {
             if (config && isString(config.ssid)) {
                 this.emit('connecting');
 
-                return wifi.connectToNetwork(config.ssid, config.password, 60000).then(() => {
+                return wifi.connectToNetwork({ssid:config.ssid, psk:config.password, timeout:60000}).then(() => {
                     return true;
                 })
                 .catch((error) => {
